@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+
+      .weather-app {
+        text-align: center;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      input {
+        padding: 10px;
+        font-size: 16px;
+        width: 200px;
+        margin-right: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .weather-info {
+        margin-top: 20px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="weather-app">
+      <h1>Weather Checker</h1>
+      <input type="text" id="cityInput" placeholder="Type a city..." />
+      <button onclick="getWeather()">Search</button>
+
+      <div id="weatherInfo" class="weather-info">
+        <!-- This will be populated by JavaScript -->
+      </div>
+    </div>
+
+    <script>
+      // Predefined weather data for some cities
+      const weatherData = {
+        Paris: { temperatureC: 19.2, temperatureF: 66.6, humidity: 80.1 },
+        London: { temperatureC: 15.7, temperatureF: 59.3, humidity: 70.5 },
+        "New York": { temperatureC: 22.4, temperatureF: 72.5, humidity: 60.7 },
+        // Add more cities and their respective weather data here
+      };
+
+      function getWeather() {
+        // Get the city entered by the user
+        const city = document.getElementById("cityInput").value.trim();
+
+        // Check if the city exists in the weatherData object
+        if (city && weatherData[city]) {
+          // Get the weather details for the city
+          const { temperatureC, temperatureF, humidity } = weatherData[city];
+
+          // Display the weather details in an alert (rounded values)
+          alert(
+            `It is currently ${Math.round(temperatureC)}°C (${Math.round(
+              temperatureF
+            )}°F) in ${city} with a humidity of ${Math.round(humidity)}%`
+          );
+        } else {
+          // Alert if the city is not found
+          alert(
+            `Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`
+          );
+        }
+      }
+    </script>
+  </body>
+</html>
